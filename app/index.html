@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Git</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/application.css">
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <div class="row header"><img src="images/logo.png" id="logo">
+      <hr>
+      <h1 class="title">Git</h1>
+    </div>
+    <div id="content">
+      <div class="row">
+        <div class="description"> 
+          <input type="checkbox" name="agreement" checked id="description" onclick="checkFunc()">
+          <label for="description">Desciption</label>
+        </div>
+        <div class="large-4 columns">
+          <h5>Basic</h5>
+          <ul class="category">
+            <li>
+              <h6>放進 stage</h6><code>git add.</code>
+            </li>
+            <li>
+              <h6>完成階段性任務</h6><code>git commit -m "first commit"</code>
+            </li>
+            <li><code>git remote add origin http://xxoo.git</code></li>
+            <li><code>git push -u origin master</code></li>
+          </ul>
+          <h5>Create</h5>
+          <ul class="category">
+            <li>
+              <h6>複製 repository</h6><code>git clone xxxx.git</code>
+            </li>
+            <li>
+              <h6>初始化，把當前資料夾做 local 數據庫</h6><code>git init</code>
+            </li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <h5>Local Changes</h5>
+          <ul class="category">
+            <li>
+              <h6>哪些檔案沒被 track / 哪些檔案被修改</h6><code>git status</code>
+              <div class="pic"><img src="images/git_status.png"></div>
+            </li>
+            <li>
+              <h6>新增以及修改你的檔案， . 代表當前目錄下所有的檔案</h6><code>git add .</code>
+            </li>
+            <li>
+              <h6>新增以及修改&lt;file&gt; 這個檔案</h6><code>git add &lt;file&gt;</code>
+            </li>
+            <li>
+              <h6>提交檔案並簡單說明</h6><code>git commit -m "簡單說明"</code>
+            </li>
+            <li>
+              <h6>刪除資料夾</h6><code>git rm -r "&lt;filename&gt;"</code>
+            </li>
+            <li>
+              <h6>當你忘記把 node_modules/ 這種資料夾放到 .gitignore 裡，在 local 刪除並不會讓 remote 也刪除，這時要打下列這個</h6><code>git rm --cached -r node_modules</code>
+            </li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <h5>Update and Publish</h5>
+          <ul class="category">
+            <li>
+              <h6>新增遠端的 repository</h6><code>git remote add &lt;remote&gt; &lt;url&gt;</code>
+              <div class="pic"><img src="images/git_remote.png"></div>
+            </li>
+            <li>
+              <h6>跟 pull 不同的是只會更新歷史記錄不會合併到 local</h6><code>git fetch </code>
+            </li>
+            <li>
+              <h6>從遠端拉最新檔案到現在的 local branch(HEAD)</h6><code>git pull &lt;remote&gt; &lt;branch&gt;</code>
+            </li>
+            <li>
+              <h6>減少歷史記錄的混亂</h6><code>git pull --rebase</code>
+            </li>
+            <li>
+              <h6>上傳 local 檔案去遠端(remote)</h6><code>git push &lt;remote&gt; &lt;branch&gt;</code>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-4 columns">
+          <h5>Commit History</h5>
+          <ul class="category">
+            <li>
+              <h6>數據庫的歷史提交記錄(只要有 commit 就會有一組40個英文數字識別碼)</h6><code>git log</code>
+              <div class="pic"><img src="images/git_log.png"></div>
+            </li>
+            <li>
+              <h6>可以顯示包含標籤資料的歷史記錄</h6><code>git log --decorate</code>
+              <div class="pic"><img src="images/git_log_dec.png"></div>
+            </li>
+            <li>
+              <h6>簡化顯示資料(前7碼識別碼跟 commit)</h6><code>git log --oneline</code>
+              <div class="pic"><img src="images/git_log_oneline.png"></div>
+            </li>
+            <li>
+              <h6>顯示&lt;file&gt;的歷史記錄</h6><code>git log -p &lt;file&gt;</code>
+            </li>
+            <li>
+              <h6>&lt;file&gt;是誰改跟改了什麼</h6><code>git blame &lt;file&gt;</code>
+            </li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <h5>Stash 暫存</h5>
+          <ul class="category">
+            <li>
+              <h6>將修改的部分丟進暫存，在切換 branch 又不想存時適用</h6><code>git stash</code>
+              <div class="pic"><img src="images/git_stash.png"></div>
+            </li>
+            <li>
+              <h6>存進暫時記憶體(-u 連untrack file也進去)</h6><code>git stash -u</code>
+            </li>
+            <li>
+              <h6>列出暫存的資料</h6><code>git stash list</code>
+            </li>
+            <li>
+              <h6>取出暫存，然後刪掉取出的這個暫存</h6><code>git stash pop</code>
+            </li>
+            <li>
+              <h6>把stash@{0}這個暫存叫出來，然後刪掉stash@{0}這個暫存</h6><code>git stash pop stash@{0}</code>
+            </li>
+            <li>
+              <h6>把這個暫存叫出來,暫存不會被刪掉</h6><code>git stash apply</code>
+            </li>
+            <li>
+              <h6>刪除某個暫存</h6><code>git drop stash@{0}</code>
+            </li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <h5>Branch and Tags</h5>
+          <ul class="category">
+            <li>
+              <h6>列出所有 branch</h6><code>git branch</code>
+              <div class="pic"><img src="images/git_branch.png"></div>
+            </li>
+            <li>
+              <h6>新增一個 branch</h6><code>git branch &lt;new-branch&gt;</code>
+            </li>
+            <li>
+              <h6>刪除 branch</h6><code>git branch -d &lt;branch&gt;</code>
+            </li>
+            <li>
+              <h6>switch 到 &lt;branch&gt; 這個 branch</h6><code>git checkout &lt;branch&gt;</code>
+            </li>
+            <li>
+              <h6>新增一個 branch 並 switch 過去</h6><code>git checkout -b &lt;new-branch&gt;</code>
+            </li>
+            <li>
+              <h6>列出所有 tag</h6><code>git tag -l</code>
+            </li>
+            <li>
+              <h6>添加標籤並建立 tag massage 訊息</h6><code>git tag &lt;tagName&gt; -m 'tag massage'</code>
+            </li>
+            <li>
+              <h6>在 commit-id 的 HEAD，建立 tag-name 的 tag</h6><code>git tag &lt;tag-name&gt; &lt;commit-id&gt;</code>
+            </li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <h5>瀏覽歷史</h5>
+          <ul class="category">
+            <li>
+              <h6>後面接 commit 編號</h6><code>git checkout 53f29fd</code>
+              <div class="pic"><img src="images/git_history_number.png"></div>
+            </li>
+            <li>
+              <h6>後面接分支名稱</h6><code>git checkout master</code>
+              <div class="pic"><img src="images/git_history_name.png"></div>
+            </li>
+            <li>
+              <h6>使用相對位置</h6><code>git checkout HEAD^</code>
+              <div class="pic"><img src="images/git_history_relative.png"></div>
+            </li>
+            <li><code>git checkout HEAD~2</code>
+              <div class="pic"><img src="images/git_history_relative2.png"></div>
+            </li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <h5>Reset 放棄提交(過去的)</h5>
+          <ul class="category">
+            <li>
+              <h6>放棄 add，但保留修改把 modifed 改成還沒 modified(綠轉紅)</h6><code>git reset</code><br><code>git reset HEAD .</code>
+            </li>
+            <li>
+              <h6>放棄所有修改，回到最新的 commit</h6><code>git reset --hard</code><code>git reset --hard HEAD</code>
+              <div class="pic"><img src="images/git_reset_hard.png"></div>
+            </li>
+            <li>
+              <h6>放棄 pull 錯的檔案，回到前一個 commit 版本( HEAD^ 代表前 1 次)</h6><code>git reset --hard HEAD^</code>
+              <div class="pic"><img src="images/git_reset_hard2.png"></div>
+            </li>
+            <li>
+              <h6>回到前前一個 commit 版本</h6><code>git reset --hard HEAD^^</code><code>git reset --hard HEAD~2</code>
+              <div class="pic"><img src="images/git_reset_hard3.png"></div>
+            </li>
+            <li>
+              <h6>把已經 commit 東西拿回來, 回到上個版本</h6><code>git reset --soft HEAD^</code>
+            </li>
+            <li>
+              <h6>若 reset 錯，可以還原到 reset 前的狀態</h6><code>git reset --hard ORIG_HEAD</code>
+            </li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <h5>改寫 Commit</h5>
+          <ul class="category">
+            <li>
+              <h6>可以修改檔案並改變最後一次提交(忘記修改某個東西不用再有新的 commit)</h6><code>git commit --amend</code>
+              <div class="pic"><img src="images/git_amend.png"></div>
+            </li>
+            <li>
+              <h6>等於取消剛提交的內容，但歷史記錄會多一條</h6><code>git revert HEAD</code>
+              <div class="pic"><img src="images/git_revert.png"></div>
+            </li>
+            <li>
+              <h6>從其他 branch 複製指定的 commit，導入現在的 branch</h6><code>git cherry-pick &lt;別的分支 commit-id&gt;</code>
+            </li>
+            <li>
+              <h6>改寫提交，替換，刪除，合併</h6><code>git rebase -i</code>
+            </li>
+          </ul>
+        </div>
+        <div class="large-4 columns">
+          <h5>Else</h5>
+          <ul class="category">
+            <li>
+              <h6>刪除資料夾</h6><code>git rm -r "&lt;filename&gt;"</code>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

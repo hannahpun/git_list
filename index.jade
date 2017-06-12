@@ -1,0 +1,227 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		title Git
+		link(rel="stylesheet" href='css/app.css')
+		link(rel="stylesheet" href='css/application.css')
+		script(src='js/main.js')
+	body
+		.row.header
+			img(src="images/logo.png" id="logo")
+			hr
+			h1.title Git
+
+		#content
+			.row
+				.description 
+					input(type="checkbox" name='agreement' checked id="description" onclick="checkFunc()")
+					label(for="description") Desciption
+				.large-4.columns
+					h5 Basic
+					ul.category
+						li
+							h6 放進 stage
+							code git add.
+						li
+							h6 完成階段性任務
+							code git commit -m "first commit"
+						li
+							code git remote add origin http://xxoo.git
+						li
+							code git push -u origin master
+					h5 Create
+					ul.category
+						li
+							h6 複製 repository
+							code git clone xxxx.git
+						li
+							h6 初始化，把當前資料夾做 local 數據庫
+							code git init
+				.large-4.columns
+					h5 Local Changes
+					ul.category
+						li
+							h6 哪些檔案沒被 track / 哪些檔案被修改
+							code git status
+							.pic: img(src="images/git_status.png")
+						li
+							h6 新增以及修改你的檔案， . 代表當前目錄下所有的檔案
+							code git add .
+						li
+							h6 新增以及修改&lt;file&gt; 這個檔案
+							code git add &lt;file&gt;
+						li
+							h6 提交檔案並簡單說明
+							code git commit -m "簡單說明"
+						li
+							h6 刪除資料夾
+							code git rm -r "&lt;filename&gt;"
+						li
+							h6 當你忘記把 node_modules/ 這種資料夾放到 .gitignore 裡，在 local 刪除並不會讓 remote 也刪除，這時要打下列這個
+							code git rm --cached -r node_modules
+				.large-4.columns
+					h5 Update and Publish
+					ul.category
+						li
+							h6 新增遠端的 repository
+							code git remote add &lt;remote&gt; &lt;url&gt;
+							.pic: img(src="images/git_remote.png")
+						li
+							h6 跟 pull 不同的是只會更新歷史記錄不會合併到 local
+							code git fetch 
+						li
+							h6 從遠端拉最新檔案到現在的 local branch(HEAD)
+							code git pull &lt;remote&gt; &lt;branch&gt;
+						li
+							h6 減少歷史記錄的混亂
+							code git pull --rebase
+						li
+							h6 上傳 local 檔案去遠端(remote)
+							code git push &lt;remote&gt; &lt;branch&gt;
+			.row
+				.large-4.columns
+					h5 Commit History
+					ul.category
+						li
+							h6 數據庫的歷史提交記錄(只要有 commit 就會有一組40個英文數字識別碼)
+							code git log
+							.pic: img(src="images/git_log.png")
+						li
+							h6 可以顯示包含標籤資料的歷史記錄
+							code git log --decorate
+							.pic: img(src="images/git_log_dec.png")
+						li
+							h6 簡化顯示資料(前7碼識別碼跟 commit)
+							code git log --oneline
+							.pic: img(src="images/git_log_oneline.png")
+						li
+							h6 顯示&lt;file&gt;的歷史記錄
+							code git log -p &lt;file&gt;
+						li
+							h6 &lt;file&gt;是誰改跟改了什麼
+							code git blame &lt;file&gt;
+				.large-4.columns
+					h5 Stash 暫存
+					ul.category
+						li
+							h6 將修改的部分丟進暫存，在切換 branch 又不想存時適用
+							code git stash
+							.pic: img(src="images/git_stash.png")
+						li
+							h6 存進暫時記憶體(-u 連untrack file也進去)
+							code git stash -u
+						li
+							h6 列出暫存的資料
+							code git stash list
+						li
+							h6 取出暫存，然後刪掉取出的這個暫存
+							code git stash pop
+						li
+							h6 把stash@{0}這個暫存叫出來，然後刪掉stash@{0}這個暫存
+							code git stash pop stash@{0}
+						li
+							h6 把這個暫存叫出來,暫存不會被刪掉
+							code git stash apply
+						li
+							h6 刪除某個暫存
+							code git drop stash@{0}
+				.large-4.columns
+					h5 Branch and Tags
+					ul.category
+						li
+							h6 列出所有 branch
+							code git branch
+							.pic: img(src="images/git_branch.png")
+						li
+							h6 新增一個 branch
+							code git branch &lt;new-branch&gt;
+						li
+							h6 刪除 branch
+							code git branch -d &lt;branch&gt;
+						li
+							h6 switch 到 &lt;branch&gt; 這個 branch
+							code git checkout &lt;branch&gt;
+						li
+							h6 新增一個 branch 並 switch 過去
+							code git checkout -b &lt;new-branch&gt;
+						li
+							h6 列出所有 tag
+							code git tag -l
+						li
+							h6 添加標籤並建立 tag massage 訊息
+							code git tag &lt;tagName&gt; -m 'tag massage'
+						li
+							h6 在 commit-id 的 HEAD，建立 tag-name 的 tag
+							code git tag &lt;tag-name&gt; &lt;commit-id&gt;
+				
+				.large-4.columns
+					h5 瀏覽歷史
+					ul.category
+						li
+							h6 後面接 commit 編號
+							code git checkout 53f29fd
+							.pic: img(src="images/git_history_number.png")
+						li
+							h6 後面接分支名稱
+							code git checkout master
+							.pic: img(src="images/git_history_name.png")
+						li
+							h6 使用相對位置
+							code git checkout HEAD^
+							.pic: img(src="images/git_history_relative.png")
+						li
+							code git checkout HEAD~2
+							.pic: img(src="images/git_history_relative2.png")
+				.large-4.columns
+					h5 Reset 放棄提交(過去的)
+					ul.category
+						li
+							h6 放棄 add，但保留修改把 modifed 改成還沒 modified(綠轉紅)
+							code git reset
+							br
+							code git reset HEAD .
+						li
+							h6 放棄所有修改，回到最新的 commit
+							code git reset --hard
+							code git reset --hard HEAD
+							.pic: img(src="images/git_reset_hard.png")
+						li
+							h6 放棄 pull 錯的檔案，回到前一個 commit 版本( HEAD^ 代表前 1 次)
+							code git reset --hard HEAD^
+							.pic: img(src="images/git_reset_hard2.png")
+						li
+							h6 回到前前一個 commit 版本
+							code git reset --hard HEAD^^
+							code git reset --hard HEAD~2
+							.pic: img(src="images/git_reset_hard3.png")
+						li
+							h6 把已經 commit 東西拿回來, 回到上個版本
+							code git reset --soft HEAD^
+						li
+							h6 若 reset 錯，可以還原到 reset 前的狀態
+							code git reset --hard ORIG_HEAD
+				.large-4.columns
+					h5 改寫 Commit
+					ul.category
+						li
+							h6 可以修改檔案並改變最後一次提交(忘記修改某個東西不用再有新的 commit)
+							code git commit --amend
+							.pic: img(src="images/git_amend.png")
+						li
+							h6 等於取消剛提交的內容，但歷史記錄會多一條
+							code git revert HEAD
+							.pic: img(src="images/git_revert.png")
+						li
+							h6 從其他 branch 複製指定的 commit，導入現在的 branch
+							code git cherry-pick &lt;別的分支 commit-id&gt;
+						li
+							h6 改寫提交，替換，刪除，合併
+							code git rebase -i
+							
+				.large-4.columns
+					h5 Else
+					ul.category
+						li
+							h6 刪除資料夾
+							code git rm -r "&lt;filename&gt;"
