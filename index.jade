@@ -146,6 +146,9 @@ html(lang="en")
 							h6 新增一個 branch 並 switch 過去
 							code git checkout -b &lt;new-branch&gt;
 						li
+							h6 想 checkout 一個本機沒有但 remote 有的 branch (記得先 git fetch)
+							code git checkout -b &lt;new-branch&gt; &lt;origin/new-branch&gt;
+						li
 							h6 列出所有 tag
 							code git tag -l
 						li
@@ -173,6 +176,11 @@ html(lang="en")
 						li
 							code git checkout HEAD~2
 							.pic: img(src="images/git_history_relative2.png")
+					h5 Merge
+					ul.category
+						li
+							h6 合併分支，要先 checkout 到你想要合併的那個分支(例如 master)
+							code git merge &lt;別的分支&gt;
 				.large-4.columns
 					h5 Reset 放棄提交(過去的)
 					ul.category
