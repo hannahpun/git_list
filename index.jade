@@ -146,6 +146,9 @@ html(lang="en")
 							h6 新增一個 branch 並 switch 過去
 							code git checkout -b &lt;new-branch&gt;
 						li
+							h6 想 checkout 一個本機沒有但 remote 有的 branch (記得先 git fetch)
+							code git checkout -b &lt;new-branch&gt; &lt;origin/new-branch&gt;
+						li
 							h6 列出所有 tag
 							code git tag -l
 						li
